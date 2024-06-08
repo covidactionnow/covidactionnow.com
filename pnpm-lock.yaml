@@ -27,8 +27,8 @@ dependencies:
     specifier: ^3.0.6
     version: 3.0.6
   protomaps-themes-base:
-    specifier: ^2.0.0
-    version: 2.0.0
+    specifier: ^3.0.1
+    version: 3.0.1
   tailwindcss:
     specifier: ^3.4.4
     version: 3.4.4
@@ -6031,8 +6031,8 @@ packages:
     resolution: {integrity: sha512-TdDRD+/QNdrCGCE7v8340QyuXd4kIWIgapsE2+n/SaGiSSbomYl4TjHlvIoCWRpE7wFt02EpB35VVA2ImcBVqw==}
     dev: false
 
-  /protomaps-themes-base@2.0.0:
-    resolution: {integrity: sha512-PJOBmt7HSGeXF0/mv+3Kxvw1blR79fJqcmumJBgJ+cHMnjenvfsV6mw7XKjQjfjhGVEsPP7ZwsCWB1DJfRcLvg==}
+  /protomaps-themes-base@3.0.1:
+    resolution: {integrity: sha512-itF0zqLYzEc/fxKdxZyc6D9GFxSnFQi53Hp+vIguuMCrHSveH9ixeRqh8Wv02woM7dRNbbbfOCeHbSWxlCdcxw==}
     dev: false
 
   /punycode@2.3.1:
