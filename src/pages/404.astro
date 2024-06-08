@@ -1,0 +1,42 @@
+---
+// with a multilingual site, it's a courtesy to not assume everyone visiting for
+// the first time speaks english.
+//
+// to this end, some hosting services like netlify have language detection redirects
+// (https://docs.netlify.com/routing/redirects/redirect-options/#redirect-by-country-or-language)
+// that can run before rendering the page. this lets us leverage `Accept-Language`
+// headers, which are the preferred way to redirect based on a user's language.
+//
+// with github pages, we can't check headers. instead, we have to check language
+// client-side in a custom 404 page, either by using a `<meta refresh>` tag or
+// via javascript. js allows us to check `navigator.language` (which, again, is
+// not as good as `Accept-Language` headers, but better than nothing), so that's
+// the strategy we employ. but we also need fallback links in the (very rare)
+// case that a user has javascript disabled.
+
+import BaseHead from "~/components/BaseHead.astro";
+
+interface Props {
+  description: string;
+}
+
+const { description } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <script is:inline>
+      if (navigator.language.split("-")[0] === "fr") location.href = "fr";
+      else location.href = "en";
+    </script>
+    <BaseHead title="COVID Action Now" description={description} />
+  </head>
+  <body>
+    <div
+      class="flex h-screen w-full flex-col items-center justify-center gap-4"
+    >
+      <a href="/en">Click here if you are not redirected</a>
+      <a href="/fr">Cliquer ici si vous n&apos;êtes pas redirigé·e</a>
+    </div>
+  </body>
+</html>
