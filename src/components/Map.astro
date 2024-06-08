@@ -1,0 +1,26 @@
+---
+import "maplibre-gl/dist/maplibre-gl.css";
+---
+
+<div id="map" class="h-[75vh] w-full"></div>
+<script>
+  import { Map, Marker, Popup } from "maplibre-gl";
+
+  const map = new Map({
+    container: "map",
+    cooperativeGestures: true,
+    style:
+      "https://api.maptiler.com/maps/streets/style.json?key=get_your_own_OpIi9ZULNHzrESv6T2vL",
+    center: [12.550343, 55.665957],
+    zoom: 8,
+  });
+
+  const popup = new Popup({ offset: 25 }).setText(
+    "Construction on the Washington Monument began in 1848.",
+  );
+
+  const marker = new Marker()
+    .setLngLat([12.550343, 55.665957])
+    .setPopup(popup)
+    .addTo(map);
+</script>

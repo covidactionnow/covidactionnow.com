@@ -1,7 +1,9 @@
 ---
 import BaseHead from "~/components/BaseHead.astro";
+import Map from "~/components/Map.astro";
 
 import logo from "~/images/can-logo.svg";
+import insta from "~/images/fa-insta.svg";
 
 const description =
   "Located in Tiohtià:ke / Montréal, Covid Action Now! provides free, high-quality masks and COVID tests for all.";
@@ -13,12 +15,60 @@ const description =
   </head>
 
   <body>
-    <div>
-      <main>
-        <h1>COVID ACTION NOW!</h1>
-        <div>welkommen</div>
-        <img src={logo.src} />
-      </main>
+    <div class="bg-gradient-to-b from-[#fec3fe] to-[#c3eaff] px-2 py-3">
+      <header class="mx-auto flex max-w-screen-xl items-center font-titles">
+        <a class="flex items-center gap-4 text-2xl" href="/">
+          <img src={logo.src} class="size-12" />
+          <div>COVID ACTION <span class="font-bold">NOW!</span></div>
+        </a>
+        <div class="ml-auto flex items-center gap-4 text-xl">
+          <a
+            href="https://www.instagram.com/covid_action_now/"
+            target="_blank"
+            rel="noreferrer"
+            class="flex-shrink-0"
+          >
+            <img src={insta.src} class="size-5" />
+          </a>
+          <a href="#about">About</a>
+          <a href="#map">Map</a>
+          <a href="#contact">Contact</a>
+          <a href="/fr">Français</a>
+        </div>
+      </header>
+      <div class="mx-auto max-w-screen-lg py-12 text-center text-4xl">
+        Towards a world where <strong>everyone</strong> can breathe easy.
+      </div>
+    </div>
+
+    <div class="bg-green-100 px-2 py-12">
+      <div class="mx-auto max-w-screen-md text-lg">
+        <h1 class="text-2xl font-bold">Get free masks and tests.</h1>
+        <div class="mt-4">
+          COVID Action Now provides <strong
+            >free masks and rapid tests for all</strong
+          > in Tiohtià:ke (Montréal). Check the map below for pickup locations. Nothing
+          near you? <a href="#contact" class="underline">Contact us</a>.
+          Interested in being a pickup location? <a
+            href="#contact"
+            class="underline">Get in touch</a
+          >.
+        </div>
+      </div>
+    </div>
+
+    <Map />
+
+    <div class="bg-red-100 px-2 py-12">
+      <div class="mx-auto max-w-screen-md text-lg">
+        <h1 class="text-2xl font-bold">Let's change the conversation.</h1>
+        <div class="mt-4">
+          COVID Action Now is a grassroots organization dedicated to providing
+          material support to all those feeling left behind by the “return to
+          normal.” We want a <strong>new normal</strong> where everyone can participate
+          and live full healthy lives. Lorem ipsum
+        </div>
+      </div>
     </div>
   </body>
 </html>
