@@ -1,0 +1,13 @@
+@import "./fonts.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    /* adapted from "transitional" system stack here: https://github.com/system-fonts/modern-font-stacks#transitional */
+    font-family: "Prospectus Pro M", Baskerville, Charter, "Bitstream Charter",
+      "Sitka Text", Cambria, serif;
+  }
+}

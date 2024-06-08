@@ -1,0 +1,37 @@
+{
+  "name": "covidactionnow.com",
+  "private": "true",
+  "type": "module",
+  "version": "0.0.1",
+  "packageManager": "pnpm@8.15.7",
+  "scripts": {
+    "start": "astro dev --port 3000",
+    "build": "astro build",
+    "preview": "astro preview",
+    "test": "run-p -cl test:*",
+    "test:eslint": "eslint --color '{src,test}/**/*.{cjs,mjs,js,ts,tsx,astro}'",
+    "test:prettier": "prettier -l '{src,test}/**/*.{cjs,mjs,js,ts,tsx,astro}'",
+    "test:ts": "tsc --pretty --noEmit",
+    "prettier": "prettier --write '{src,test}/**/*.{cjs,mjs,js,ts,tsx,astro,md,mdx}'"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^3.0.0",
+    "@astrojs/rss": "^4.0.5",
+    "@astrojs/sitemap": "^3.1.4",
+    "@astrojs/tailwind": "^5.1.0",
+    "astro": "^4.8.2",
+    "tailwindcss": "^3.4.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.13",
+    "@types/node": "^20.12.11",
+    "eslint": "^8.57.0",
+    "eslint-config-lostfictions": "^6.1.0",
+    "eslint-plugin-astro": "^1.1.2",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^3.2.5",
+    "prettier-plugin-astro": "^0.13.0",
+    "prettier-plugin-tailwindcss": "^0.5.14",
+    "typescript": "^5.4.5"
+  }
+}

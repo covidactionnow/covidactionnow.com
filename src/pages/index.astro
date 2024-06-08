@@ -1,0 +1,24 @@
+---
+import BaseHead from "~/components/BaseHead.astro";
+
+import logo from "~/images/can-logo.svg";
+
+const description =
+  "Located in Tiohtià:ke / Montréal, Covid Action Now! provides free, high-quality masks and COVID tests for all.";
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title="COVID Action Now!" description={description} />
+  </head>
+
+  <body>
+    <div>
+      <main>
+        <h1>COVID ACTION NOW!</h1>
+        <div>welkommen</div>
+        <img src={logo.src} />
+      </main>
+    </div>
+  </body>
+</html>
