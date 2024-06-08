@@ -6,6 +6,8 @@ import tailwind from "@astrojs/tailwind";
 
 export default defineConfig({
   site: "https://covidactionnow.com",
+  // required to resolve some urls correctly when prefixed with basepath
+  trailingSlash: "always",
   devToolbar: { enabled: false },
   integrations: [
     mdx(),
