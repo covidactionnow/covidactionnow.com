@@ -1,0 +1,94 @@
+---
+import BaseHead from "~/components/BaseHead.astro";
+import Map from "~/components/Map.astro";
+
+import logo from "~/images/can-logo.svg";
+import insta from "~/images/fa-insta.svg";
+
+export function getStaticPaths() {
+  return [{ params: { lang: "en" } }, { params: { lang: "fr" } }];
+}
+
+const { lang } = Astro.params;
+
+const description =
+  "Located in Tiohtià:ke / Montréal, Covid Action Now! provides free, high-quality masks and COVID tests for all.";
+
+const heroText = `Towards a world where <strong>everyone</strong> can breathe easy.`;
+
+const section1title = `Get free masks and tests.`;
+
+const section1body = `
+  COVID Action Now provides <strong>free masks and rapid tests for all</strong>
+  in Tiohtià:ke (Montréal). Check the map below for pickup locations. Nothing
+  near you? <a href="#contact">Contact us</a>.
+  Interested in being a pickup location? <a href="#contact">
+  Get in touch</a>.
+`;
+
+const section2title = `Let's change the conversation.`;
+
+const section2body = `
+  COVID Action Now is a grassroots organization dedicated to providing
+  material support to all those feeling left behind by the “return to
+  normal.” We want a <strong>new normal</strong> where everyone can participate
+  and live full healthy lives. Lorem ipsum
+`;
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title="COVID Action Now!" description={description} />
+  </head>
+
+  <body>
+    <div class="bg-gradient-to-b from-[#fec3fe] to-[#c3eaff] px-2 py-3">
+      <header class="mx-auto flex max-w-screen-xl items-center font-titles">
+        <a class="flex items-center gap-4 text-2xl" href="/">
+          <img src={logo.src} class="size-12" />
+          <div>COVID ACTION <span class="font-bold">NOW!</span></div>
+        </a>
+        <div class="ml-auto flex items-center gap-4 text-xl">
+          <a
+            href="https://www.instagram.com/covid_action_now/"
+            target="_blank"
+            rel="noreferrer"
+            class="flex-shrink-0"
+          >
+            <img src={insta.src} title="Instagram" class="size-5" />
+          </a>
+          <a href="#about">About</a>
+          <a href="#map">Map</a>
+          <a href="#contact">Contact</a>
+          {
+            lang === "en" ? (
+              <a href="/fr">Français</a>
+            ) : (
+              <a href="/en">English</a>
+            )
+          }
+        </div>
+      </header>
+      <div
+        class="mx-auto max-w-screen-lg text-balance py-12 text-center text-5xl"
+        set:html={heroText}
+      />
+    </div>
+
+    <div class="bg-green-100 px-2 py-12">
+      <div class="mx-auto max-w-screen-md">
+        <h1 class="font-titles text-3xl font-bold" set:html={section1title} />
+        <div class="with-link-underline mt-4 text-lg" set:html={section1body} />
+      </div>
+    </div>
+
+    <Map />
+
+    <div class="bg-red-100 px-2 py-12">
+      <div class="mx-auto max-w-screen-md">
+        <h1 class="text-2xl font-bold" set:html={section2title} />
+        <div class="with-link-underline mt-4 text-lg" set:html={section2body} />
+      </div>
+    </div>
+  </body>
+</html>

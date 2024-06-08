@@ -11,3 +11,9 @@
       "Sitka Text", Cambria, serif;
   }
 }
+
+@layer utilities {
+  .with-link-underline a {
+    @apply underline;
+  }
+}
