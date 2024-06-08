@@ -5,6 +5,7 @@ import { localize } from "~/util";
 
 import logo from "~/images/can-logo.svg";
 import insta from "~/images/fa-insta.svg";
+import email from "~/images/email.svg";
 
 export function getStaticPaths() {
   return [{ params: { lang: "en" } }, { params: { lang: "fr" } }];
@@ -55,7 +56,7 @@ const l = await localize({ entry: "index", lang });
     </div>
 
     <div class="bg-green-100 px-2 py-12">
-      <div class="mx-auto max-w-screen-md">
+      <div class="mx-auto max-w-screen-sm lg:max-w-screen-md">
         <h1
           class="font-titles text-3xl font-bold"
           set:html={l("section1title")}
@@ -70,12 +71,51 @@ const l = await localize({ entry: "index", lang });
     <Map />
 
     <div class="bg-red-100 px-2 py-12">
-      <div class="mx-auto max-w-screen-md">
-        <h1 class="text-2xl font-bold" set:html={l("section2title")} />
+      <div class="mx-auto max-w-screen-sm lg:max-w-screen-md">
+        <h1
+          class="font-titles text-3xl font-bold"
+          set:html={l("section2title")}
+        />
         <div
           class="with-link-underline mt-4 text-lg"
           set:html={l("section2body")}
         />
+      </div>
+    </div>
+
+    <div class="bg-stone-100 px-2 py-12">
+      <div
+        class="mx-auto flex max-w-screen-sm flex-col items-center gap-2 lg:max-w-screen-md"
+      >
+        <h1
+          class="font-titles text-3xl font-bold"
+          set:html={l("contact-title")}
+        />
+        <a
+          href="https://www.instagram.com/covid_action_now/"
+          target="_blank"
+          rel="noreferrer"
+          class="flex items-center gap-2"
+        >
+          <img src={insta.src} title="Instagram" class="size-5" />
+          <span class="text-xl underline">covid_action_now</span>
+        </a>
+        <a id="email" href="#" class="flex items-center gap-2">
+          <img src={email.src} title="Instagram" class="size-5" />
+          <span class="text-xl underline"
+            >covidactionnow [at] proton [dot] me</span
+          >
+        </a>
+        <script>
+          // prevent spam with one weird trick
+          const user = "covidactionnow";
+          const domain = "proton.me";
+          setTimeout(() => {
+            const el = document.querySelector("#email")!;
+            el.setAttribute("href", `mailto:${user}@${domain}`);
+            el.querySelector("span")!.innerText = `${user}@${domain}`;
+          }, 500);
+        </script>
       </div>
     </div>
   </body>
