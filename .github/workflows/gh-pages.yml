@@ -1,11 +1,19 @@
 name: Deploy site to Github Pages
 
+# adapted from https://github.com/actions/starter-workflows/blob/9f1db534549e072c20d5d1a79e0a4ff45a674caf/pages/astro.yml
+
 on:
   push:
     branches: ["master"]
   pull_request:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 # Allow at most one concurrent deployment
 concurrency:
@@ -37,6 +45,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      # still necessary for now, actions/setup-node still doesn't support corepack
       - name: Setup pnpm
         uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2
       - name: Setup Node
@@ -44,14 +53,16 @@ jobs:
         with:
           node-version-file: ".node-version"
           cache: "pnpm"
+      # infers the origin and basepath for use in the astro build step
       - name: Configure Github Pages
-        uses: actions/configure-pages@v2
-        with:
-          static_site_generator: next
+        id: pages
+        uses: actions/configure-pages@v5
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Build and export site
-        run: pnpm build
+        run: pnpm astro build \
+          --site "${{ steps.pages.outputs.origin }}" \
+          --base "${{ steps.pages.outputs.base_path }}"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
