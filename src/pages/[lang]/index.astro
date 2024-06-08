@@ -84,38 +84,38 @@ const l = await localize({ entry: "index", lang });
     </div>
 
     <div class="bg-stone-100 px-2 py-12">
-      <div
-        class="mx-auto flex max-w-screen-sm flex-col items-center gap-2 lg:max-w-screen-md"
-      >
-        <h1
-          class="font-titles text-3xl font-bold"
-          set:html={l("contact-title")}
-        />
-        <a
-          href="https://www.instagram.com/covid_action_now/"
-          target="_blank"
-          rel="noreferrer"
-          class="flex items-center gap-2"
-        >
-          <img src={insta.src} title="Instagram" class="size-5" />
-          <span class="text-xl underline">covid_action_now</span>
-        </a>
-        <a id="email" href="#" class="flex items-center gap-2">
-          <img src={email.src} title="Instagram" class="size-5" />
-          <span class="text-xl underline"
-            >covidactionnow [at] proton [dot] me</span
+      <div class="mx-auto max-w-screen-sm lg:max-w-screen-md">
+        <div class="flex flex-col items-center gap-2">
+          <h1
+            class="font-titles text-3xl font-bold"
+            set:html={l("contact-title")}
+          />
+          <a
+            href="https://www.instagram.com/covid_action_now/"
+            target="_blank"
+            rel="noreferrer"
+            class="flex items-center gap-2"
           >
-        </a>
-        <script>
-          // prevent spam with one weird trick
-          const user = "covidactionnow";
-          const domain = "proton.me";
-          setTimeout(() => {
-            const el = document.querySelector("#email")!;
-            el.setAttribute("href", `mailto:${user}@${domain}`);
-            el.querySelector("span")!.innerText = `${user}@${domain}`;
-          }, 500);
-        </script>
+            <img src={insta.src} title="Instagram" class="size-5" />
+            <span class="text-xl underline">covid_action_now</span>
+          </a>
+          <a id="email" href="#" class="flex items-center gap-2">
+            <img src={email.src} title={l("email")} class="size-5" />
+            <span class="text-xl underline"
+              >covidactionnow [at] proton [dot] me</span
+            >
+          </a>
+          <script>
+            // prevent spam with one weird trick
+            const user = "covidactionnow";
+            const domain = "proton.me";
+            setTimeout(() => {
+              const el = document.querySelector("#email")!;
+              el.setAttribute("href", `mailto:${user}@${domain}`);
+              el.querySelector("span")!.innerText = `${user}@${domain}`;
+            }, 500);
+          </script>
+        </div>
       </div>
     </div>
   </body>
