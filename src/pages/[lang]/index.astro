@@ -14,6 +14,7 @@ export function getStaticPaths() {
 const { lang } = Astro.params;
 
 const l = await localize({ entry: "index", lang });
+const baseUrl = import.meta.env.BASE_URL ?? "/";
 ---
 
 <html lang={lang}>
@@ -24,7 +25,7 @@ const l = await localize({ entry: "index", lang });
   <body>
     <div class="bg-gradient-to-b from-[#fec3fe] to-[#c3eaff] px-3 py-3">
       <header class="mx-auto flex max-w-screen-xl items-center font-titles">
-        <a class="flex items-center gap-4 text-2xl" href={`/${lang}`}>
+        <a class="flex items-center gap-4 text-2xl" href={`${baseUrl}${lang}`}>
           <img src={logo.src} alt="COVID Action Now logo" class="size-12" />
           <div>COVID ACTION <span class="font-bold">NOW!</span></div>
         </a>
@@ -42,9 +43,9 @@ const l = await localize({ entry: "index", lang });
           <a href="#contact" class="hidden md:block">{l("contact")}</a>
           {
             lang === "en" ? (
-              <a href="/fr">Français</a>
+              <a href={`${baseUrl}fr`}>Français</a>
             ) : (
-              <a href="/en">English</a>
+              <a href={`${baseUrl}en`}>English</a>
             )
           }
         </div>
@@ -55,7 +56,7 @@ const l = await localize({ entry: "index", lang });
       />
     </div>
 
-    <div class="bg-green-100 px-3 py-12">
+    <div id="about" class="bg-green-100 px-3 py-12">
       <div class="mx-auto max-w-screen-sm lg:max-w-screen-md">
         <h1
           class="text-balance font-titles text-3xl font-bold"
@@ -83,7 +84,7 @@ const l = await localize({ entry: "index", lang });
       </div>
     </div>
 
-    <div class="bg-stone-100 px-3 py-12">
+    <div id="contact" class="bg-stone-100 px-3 py-12">
       <div class="mx-auto max-w-screen-sm lg:max-w-screen-md">
         <div class="flex flex-col items-center gap-2">
           <h1
