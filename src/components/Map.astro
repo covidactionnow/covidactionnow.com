@@ -1,26 +1,149 @@
 ---
+import { getEntry } from "astro:content";
+
 import "maplibre-gl/dist/maplibre-gl.css";
+
+const { data } = await getEntry("distro", "index");
 ---
 
-<div id="map" class="h-[75vh] w-full"></div>
+<div id="map" class="h-[80vh] w-full"></div>
+<!-- <script define:vars={{ data }}>
+  window.mapData = data;
+</script> -->
 <script>
-  import { Map, Marker, Popup } from "maplibre-gl";
+  import { Protocol } from "pmtiles";
+  import layers from "protomaps-themes-base";
 
-  const map = new Map({
+  import {
+    Map,
+    Marker,
+    Popup,
+    addProtocol,
+    NavigationControl,
+    FullscreenControl,
+    type MapOptions,
+  } from "maplibre-gl";
+
+  const protocol = new Protocol();
+  addProtocol("pmtiles", protocol.tile);
+
+  const config: MapOptions = {
     container: "map",
+    attributionControl: false,
     cooperativeGestures: true,
-    style:
-      "https://api.maptiler.com/maps/streets/style.json?key=get_your_own_OpIi9ZULNHzrESv6T2vL",
-    center: [12.550343, 55.665957],
-    zoom: 8,
-  });
 
-  const popup = new Popup({ offset: 25 }).setText(
-    "Construction on the Washington Monument began in 1848.",
+    center: [-73.66, 45.5],
+    zoom: 11,
+
+    style: {
+      version: 8,
+      // FIXME: self-host
+      glyphs:
+        "https://protomaps.github.io/basemaps-assets/fonts/{fontstack}/{range}.pbf",
+      sources: {
+        protomaps: { type: "vector", url: "pmtiles:///montreal.pmtiles" },
+      },
+      layers: layers("protomaps", "light"),
+    },
+  };
+
+  // a little hairy, but there's no simple way to pass frontmatter script vars
+  // to client-side scripts in astro.
+  const lang = location.pathname.slice(1).split("/")[0];
+
+  if (lang === "fr") {
+    config.locale = {
+      "FullscreenControl.Enter": "Entrer en plein écran",
+      "FullscreenControl.Exit": "Quitter plein écran",
+      "GeolocateControl.FindMyLocation": "Trouver ma position",
+      "GeolocateControl.LocationNotAvailable": "Emplacement non disponible",
+      "NavigationControl.ResetBearing": "Réinitialiser l'azimut",
+      "CooperativeGesturesHandler.WindowsHelpText":
+        "Utilisez Ctrl + défilement pour zoomer la carte",
+      "CooperativeGesturesHandler.MacHelpText":
+        "Utiliser ⌘ + défilement pour zoomer la carte",
+      "CooperativeGesturesHandler.MobileHelpText":
+        "Utilisez deux doigts pour déplacer le point de vue de la carte",
+    };
+  }
+
+  const map = new Map(config);
+
+  map.addControl(new FullscreenControl());
+  map.addControl(new NavigationControl());
+
+  const markerContainer = document.querySelector("#markers")!;
+  const markers =
+    markerContainer.querySelectorAll<HTMLElement>(".site-map-marker");
+
+  let minLat = Number.POSITIVE_INFINITY;
+  let minLon = Number.POSITIVE_INFINITY;
+  let maxLat = Number.NEGATIVE_INFINITY;
+  let maxLon = Number.NEGATIVE_INFINITY;
+
+  for (const marker of markers) {
+    const lon = Number.parseFloat(marker.dataset["lon"]!);
+    const lat = Number.parseFloat(marker.dataset["lat"]!);
+
+    if (lon < minLon) minLon = lon;
+    if (lat < minLat) minLat = lat;
+    if (lon > maxLon) maxLon = lon;
+    if (lat > maxLat) maxLat = lat;
+
+    new Marker()
+      .setLngLat([lon, lat])
+      .setPopup(
+        new Popup({
+          offset: 25,
+          closeButton: false,
+          focusAfterOpen: false,
+        }).setDOMContent(marker),
+      )
+      .addTo(map);
+  }
+
+  const PADDING = 0.02;
+  map.fitBounds(
+    [minLon - PADDING, minLat - PADDING, maxLon + PADDING, maxLat + PADDING],
+    { animate: false },
   );
 
-  const marker = new Marker()
-    .setLngLat([12.550343, 55.665957])
-    .setPopup(popup)
-    .addTo(map);
+  markerContainer.parentNode!.removeChild(markerContainer);
 </script>
+<div class="hidden" id="markers">
+  {
+    data
+      .filter((d) => d.latLon)
+      .map((d) => (
+        <div
+          class="site-map-marker with-link-underline flex flex-col gap-2"
+          data-lat={d.latLon![0]}
+          data-lon={d.latLon![1]}
+        >
+          <div class="font-titles text-lg font-bold">{d.name}</div>
+          {d.website && (
+            <div>
+              <a href={d.website}>{d.website}</a>
+            </div>
+          )}
+          {d.insta && (
+            <div>
+              <a
+                href={`https://www.instagram.com/${d.insta.startsWith("@") ? d.insta.slice(1) : d.insta}`}
+              >
+                {d.insta.startsWith("@") ? d.insta : `@${d.insta}`}
+              </a>
+            </div>
+          )}
+          {d.email && (
+            <div>
+              <a href={`mailto:${d.email}`}>{d.email}</a>
+            </div>
+          )}
+          {d.address && <div>{d.address}</div>}
+          {d.tel && <div>{d.tel}</div>}
+          {d.description && <div>{d.description}</div>}
+        </div>
+      ))
+  }
+</div>

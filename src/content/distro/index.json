@@ -1,0 +1,96 @@
+[
+  {
+    "name": "L'Euguélionne",
+    "website": "https://librairieleuguelionne.com/",
+    "email": "info@librairieleuguelionne.com",
+    "insta": "@librairieleuguelionne",
+    "address": "1426 Rue Beaudry, Montréal, QC H2L 3E5",
+    "latLon": [45.51914297115684, -73.55635991527025]
+  },
+  {
+    "name": "Centre de solidarité lesbienne",
+    "website": "https://www.solidaritelesbienne.qc.ca/",
+    "email": "info@solidaritelesbienne.qc.ca",
+    "insta": "@csl_mtl",
+    "address": "4126 Saint Denis St bureau 301, Montreal, Quebec H2W 2M5",
+    "latLon": [45.52111070826116, -73.57721856247437]
+  },
+  {
+    "name": "ASTT(e)Q / CACTUS Montréal",
+    "website": "https://cactusmontreal.org/soutien-aux-personnes-trans/",
+    "email": "info@cactusmontreal.org",
+    "insta": "@astteq",
+    "address": "1300 Rue Sanguinet, Montréal, QC H2X 1L7",
+    "latLon": [45.51280916363695, -73.56105837294156]
+  },
+  {
+    "name": "L'achoppe",
+    "website": "https://www.facebook.com/lecentresocial/",
+    "email": "lachoppe@riseup.net",
+    "insta": "@csa_lachoppe",
+    "address": "1800 Av. Letourneux, Montréal, QC H1V 2N1",
+    "latLon": [45.551743440737006, -73.53816190261342]
+  },
+  {
+    "name": "Nueva Era",
+    "website": "https://nuevaera.ca/",
+    "insta": "@nuevaeramtl",
+    "address": "5835 Rue St-Hubert, Montréal, QC H2S 2L8",
+    "latLon": [45.53356937953514, -73.59705414151017]
+  },
+  {
+    "name": "Santropol Roulant",
+    "website": "https://santropolroulant.org/",
+    "email": "info@santropolroulant.org",
+    "insta": "@SRoulant",
+    "address": "111 Rue Roy E, Montréal, QC H2W 1M1",
+    "latLon": [45.51665115133688, -73.57522131273294]
+  },
+  {
+    "name": "Café Aquin",
+    "email": "cafe.aquin@gmail.com",
+    "insta": "@cafeaquin",
+    "address": "400 St Catherine St E. local A-2030, Montreal, Quebec H2L 2C5",
+    "latLon": [45.513429556316225, -73.55832788351823],
+    "description": "Closed for the summer! / Fermé pour l'été!"
+  },
+  {
+    "name": "Librairie Racines",
+    "website": "https://librairieracines.com/",
+    "insta": "@racinesmontreal",
+    "address": "6524 Rue St-Hubert, Montréal, QC H2S 2J3",
+    "latLon": [45.53640678790294, -73.60385443061202]
+  },
+  {
+    "name": "PULP Bookstore",
+    "website": "https://pulpbooks.ca/",
+    "email": "info@pulpbooks.ca",
+    "insta": "@pulpbooksmtl",
+    "address": "3952 Wellington St, Montreal, Quebec H4G 1V3",
+    "latLon": [45.46455323882381, -73.5666500576008]
+  },
+  {
+    "name": "P!nk Bloc",
+    "insta": "@pink_bloc_mtl"
+  },
+  {
+    "name": "Trans Picnic Montréal",
+    "insta": "@transpicnic"
+  },
+  {
+    "name": "Cyber Love Hotel",
+    "insta": "@cyberlovehotel"
+  },
+  {
+    "name": "Parc-Ex Mutual Aid"
+  },
+  {
+    "name": "Brique par brique"
+  },
+  {
+    "name": "Studio 3 Tables"
+  },
+  {
+    "name": "Head and Hands"
+  }
+]
