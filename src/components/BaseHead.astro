@@ -9,7 +9,6 @@ export interface Props {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-// FIXME use better placeholder
 const { title, description, image = "/default-social-bg.png" } = Astro.props;
 ---
 
